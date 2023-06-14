@@ -1,207 +1,124 @@
-# Projeto Labook
-O Labook é uma rede social com o objetivo de promover a conexão e interação entre pessoas. Quem se cadastrar no aplicativo poderá criar e curtir publicações.
+<h1  align="center">API Labook</h1> 
 
-Agora que temos as bases de criação de APIs e banco de dados, o próximo nível é a implementação de segurança e códigos mais escaláveis. Veremos durante o prazo de entrega desse projeto inúmeros conceitos e formas de desenvolvimento seguindo padrões de design e arquitetura, e seu desafio será unir as funcionalidades com as boas práticas de código.
+## Sobre esse projeto 📖
+Labook API A Labook API é uma aplicação que oferece uma plataforma de rede social, permitindo que os usuários se conectem e interajam. Esta API foi desenvolvida seguindo as melhores práticas e utiliza uma variedade de tecnologias para fornecer uma experiência segura e eficiente para os usuários do Labook.
 
-# Conteúdos abordados
-- NodeJS
-- Typescript
-- Express
-- SQL e SQLite
-- Knex
-- POO
-- Arquitetura em camadas
-- Geração de UUID
-- Geração de hashes
-- Autenticação e autorização
-- Roteamento
-- Postman
+## Funcionalidades 📋
+A Labook API oferece uma coleção de endpoints que permitem gerenciar usuários, posts e curtidas na plataforma de rede social. Abaixo estão detalhes das principais funcionalidades disponíveis:
 
-# Banco de dados
-![projeto-labook (2)](https://user-images.githubusercontent.com/29845719/216036534-2b3dfb48-7782-411a-bffd-36245b78594e.png)
+**`SignUp`**: Realiza o cadastro de um novo usuário no sistema.
 
-https://dbdiagram.io/d/63d16443296d97641d7c1ae1
+**`Login`**: Retorna um token de autenticação após verificar as credenciais do usuário.
 
-# Lista de requisitos
-- Documentação Postman de todos os endpoints (obrigatória para correção)
+**`CreatePost`**: Permite a criação de um novo post associado ao ID do usuário.
 
-- Endpoints
-    - [ ]  signup
-    - [ ]  login
-    - [ ]  get posts
-    - [ ]  create post
-    - [ ]  edit post
-    - [ ]  delete post
-    - [ ]  like / dislike post
+**`GetPost`**:Recebe um token de autenticação e retorna todos os posts criados pelo usuário.
 
-- Autenticação e autorização
-    - [ ]  identificação UUID
-    - [ ]  senhas hasheadas com Bcrypt
-    - [ ]  tokens JWT
- 
- - Código
-    - [ ]  POO
-    - [ ]  Arquitetura em camadas
-    - [ ]  Roteadores no Express
+**`EditPost`**: Permite a edição de um post existente.
 
-- README.md
+**`DeletePost`**: Permite excluir um post existente com base no ID.
 
-# Exemplos de requisição
+**`LikeOrDislike`**: Permite que um usuário dê um like ou dislike em um post de outro usuário.
 
-## Signup
-Endpoint público utilizado para cadastro. Devolve um token jwt.
-```typescript
-// request POST /users/signup
-// body JSON
-{
-  "name": "Beltrana",
-  "email": "beltrana@email.com",
-  "password": "beltrana00"
-}
+Esses endpoints fornecem uma ampla gama de funcionalidades para os desenvolvedores e outras partes interessadas acessarem e interagirem com a Labook API por meio de chamadas de API bem definidas.
 
-// response
-// status 201 CREATED
-{
-  token: "um token jwt"
-}
-```
+A documentação completa está nesse link:
 
-## Login
-Endpoint público utilizado para login. Devolve um token jwt.
-```typescript
-// request POST /users/login
-// body JSON
-{
-  "email": "beltrana@email.com",
-  "password": "beltrana00"
-}
 
-// response
-// status 200 OK
-{
-  token: "um token jwt"
-}
-```
+## Tecnologias utilizadas 💾
 
-## Get posts
-Endpoint protegido, requer um token jwt para acessá-lo.
-```typescript
-// request GET /posts
-// headers.authorization = "token jwt"
+A Labook API foi desenvolvida utilizando as seguintes tecnologias:
 
-// response
-// status 200 OK
-[
-    {
-        "id": "uma uuid v4",
-        "content": "Hoje vou estudar POO!",
-        "likes": 2,
-        "dislikes" 1,
-        "createdAt": "2023-01-20T12:11:47:000Z"
-        "updatedAt": "2023-01-20T12:11:47:000Z"
-        "creator": {
-            "id": "uma uuid v4",
-            "name": "Fulano"
-        }
-    },
-    {
-        "id": "uma uuid v4",
-        "content": "kkkkkkkkkrying",
-        "likes": 0,
-        "dislikes" 0,
-        "createdAt": "2023-01-20T15:41:12:000Z"
-        "updatedAt": "2023-01-20T15:49:55:000Z"
-        "creator": {
-            "id": "uma uuid v4",
-            "name": "Ciclana"
-        }
-    }
-]
-```
+NodeJS: plataforma de desenvolvimento backend baseada em JavaScript.
 
-## Create post
-Endpoint protegido, requer um token jwt para acessá-lo.
-```typescript
-// request POST /posts
-// headers.authorization = "token jwt"
-// body JSON
-{
-    "content": "Partiu happy hour!"
-}
+TypeScript: superset do JavaScript que traz recursos adicionais de tipagem estática.
 
-// response
-// status 201 CREATED
-```
+Express: framework web utilizado para criar aplicativos e APIs em NodeJS.
 
-## Edit post
-Endpoint protegido, requer um token jwt para acessá-lo.<br>
-Só quem criou o post pode editá-lo e somente o conteúdo pode ser editado.
-```typescript
-// request PUT /posts/:id
-// headers.authorization = "token jwt"
-// body JSON
-{
-    "content": "Partiu happy hour lá no point de sempre!"
-}
+SQLite: linguagem de consulta estruturada e sistema de gerenciamento de banco de dados relacionais.
 
-// response
-// status 200 OK
-```
+Knex: biblioteca para construção de consultas SQL de forma simples e intuitiva.
 
-## Delete post
-Endpoint protegido, requer um token jwt para acessá-lo.<br>
-Só quem criou o post pode deletá-lo. Admins podem deletar o post de qualquer pessoa.
+Programação Orientada a Objetos (POO): paradigma de programação que organiza o código em objetos e classes.
 
-```typescript
-// request DELETE /posts/:id
-// headers.authorization = "token jwt"
+Arquitetura em camadas: abordagem que divide a aplicação em camadas para uma melhor organização e manutenção do código.
 
-// response
-// status 200 OK
-```
+Geração de UUID: criação de identificadores únicos universalmente.
 
-## Like or dislike post (mesmo endpoint faz as duas coisas)
+Geração de hashes: processo de converter dados em uma sequência alfanumérica de tamanho fixo.
 
-Endpoint protegido, requer um token jwt para acessá-lo.<br>
-Quem criou o post não pode dar like ou dislike no mesmo.<br><br>
-Caso dê um like em um post que já tenha dado like, o like é desfeito.<br>
-Caso dê um dislike em um post que já tenha dado dislike, o dislike é desfeito.<br><br>
-Caso dê um like em um post que tenha dado dislike, o like sobrescreve o dislike.<br>
-Caso dê um dislike em um post que tenha dado like, o dislike sobrescreve o like.
-### Like (funcionalidade 1)
-```typescript
-// request PUT /posts/:id/like
-// headers.authorization = "token jwt"
-// body JSON
-{
-    "like": true
-}
+Autenticação e autorização: mecanismos utilizados para garantir a segurança e controle de acesso aos recursos da aplicação.
 
-// response
-// status 200 OK
-```
+Roteamento: definição de rotas para acessar diferentes recursos da API.
 
-### Dislike (funcionalidade 2)
-```typescript
-// request PUT /posts/:id/like
-// headers.authorization = "token jwt"
-// body JSON
-{
-    "like": false
-}
+Postman: plataforma para testar e documentar APIs.
 
-// response
-// status 200 OK
-```
+Banco de dados: armazenamento de informações relacionais utilizadas pela aplicação.
 
-### Para entender a tabela likes_dislikes
-- no SQLite, lógicas booleanas devem ser controladas via 0 e 1 (INTEGER)
-- quando like valer 1 na tabela é porque a pessoa deu like no post
-    - na requisição like é true
+
+## Instalação 🛠️
+
+Para utilizar a API Labook em seu ambiente local, siga as instruções abaixo para a instalação e configuração adequadas.
+
+Pré-requisitos
+
+Antes de iniciar a instalação, verifique se o seu sistema possui os seguintes pré-requisitos:
+
+-   Node.js (versão 14 ou superior)
+-   NPM (Node Package Manager) ou Yarn
+
+Passo a passo✅
+
+1.  Faça o download ou clone o repositório da API Labook em seu ambiente local.
     
-- quando like valer 0 na tabela é porque a pessoa deu dislike no post
-    - na requisição like é false
+2.  Abra o terminal e navegue até o diretório raiz do projeto.
     
-- caso não exista um registro na tabela de relação, é porque a pessoa não deu like nem dislike
-- caso dê like em um post que já tenha dado like, o like é removido (deleta o item da tabela)
-- caso dê dislike em um post que já tenha dado dislike, o dislike é removido (deleta o item da tabela)
+3.  Execute o seguinte comando para instalar as dependências necessárias:
+    
+    ```
+    `npm install` 
+    
+    ```
+    
+    ou, se estiver utilizando o Yarn:
+    
+    ```
+    `yearn` 
+    
+    ```
+    
+4.  Crie um arquivo  `.env`  na raiz do projeto e defina as seguintes variáveis de ambiente:
+    
+    ```
+    DB_HOST=seu_host,
+    DB_USER=seu_usuario
+    DB_PASSWORD=sua_senha
+    DB_DATABASE=seu_banco_de_dados
+    JWT_SECRET=sua_chave_secreta
+    
+    ```
+    
+    Certifique-se de substituir os valores  `seu_host`,  `seu_usuario`,  `sua_senha`  e  `seu_banco_de_dados`  pelas informações correspondentes ao seu banco de dados.
+    
+    A variável  `JWT_SECRET`  é utilizada para a geração de tokens JWT e pode ser definida como uma string de sua escolha.
+    
+5.  Execute o seguinte comando para criar as tabelas no banco de dados:
+    
+    `npm run create-tables`
+    
+    ou, se estiver utilizando o Yarn:  `yarn create-tables`
+    
+6.  Finalmente, inicie a API Labook executando o seguinte comando:
+    
+    `npm start`
+    
+    ou, com o Yarn:
+    
+    `yarn start`
+    
+    A API estará disponível no endereço  `http://localhost:3000`.
+    
+
+Agora você pode utilizar a API Labook para criar, editar, excluir e interagir com publicações e usuários na rede social Labook. Certifique-se de consultar a documentação dos endpoints para obter mais detalhes sobre como utilizar cada funcionalidade.
+
+## Status do Projeto  🚧
